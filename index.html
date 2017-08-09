@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>upload file</title>
+	<meta charset='utf-8'>
+	<link rel='stylesheet' type'txt/css' href='css/menu_portfolio.css'>
+	<link rel='stylesheet' type'txt/css' href='css/jquery.Jcrop.min.css'>
+	<link rel='stylesheet' type'txt/css' href='css/help_info.css'>
+	<script type="text/javascript" src='js/jquery.min.js'></script>
+	<script type="text/javascript" src='js/jquery.Jcrop.min.js'></script>
+	<script type="text/javascript" src='js/menu_portfolio.js' defer ></script>
+	<script type="text/javascript" src='js/help_info.js' defer ></script>
+
+</head>
+<body>
+
+<input type="button" name="open_btn" id='open_btn' value='upload' class='open_btn'>
+<div id='popup-menu-portfolio'>
+	<div id='menu-portfolio-container' class="menu-portfolio-container">
+	<span class="menu-portfolio-close_btn"  id='menu-portfolio-close_btn'>x</span>
+		<form name='menu-protfolil-form' id='menu-protfolil-form' action='menu_portfolio.php' method='post' enctype="multipart/form-data" target = 'menu-protfolio-frame'>
+			<input type='file' name='menu-portfolio-upload_btn' id='menu-portfolio-upload_btn'  class='menu-portfolio-upload_btn'>
+			<span class='help-info' id='help-info' data-id-help-info='2'>i</span>
+			<input type="reset" name="menu-portfolio-reset_btn" id='menu-portfolio-reset_btn' value='Очистить' class='menu-portfolio-reset_btn'>
+			<input type='submit' name='menu-portfolio-submit_btn' id='menu-portfolio-submit_btn' value='Сохранить' class='menu-portfolio-submit_btn'>
+			<div class='menu-portfolio-newName'><input type='text' name='menu-portfolio-newName-input' id='menu-portfolio-newName-input' value='' placeholder="Новое имя файла" class='menu-portfolio-newName-input'></div>
+			<div class='menu-portfolio-newName-result'></div>
+			<div class='menu-portfolio-clear'></div>
+			<hr>
+			<div class='menu-portfolio-size'>
+				<label>исходный размер: </label>
+				<input type='number' value='0' name='menu-portfolio-size-width' id='menu-portfolio-size-width' value='' placeholder="размер файла" class='menu-portfolio-size-width'>
+				<span>x</span>
+				<input type='number' value='0' name='menu-portfolio-size-height' id='menu-portfolio-size-height' class='menu-portfolio-size-height'>
+				<div class='menu-portfolio-size-fix sprit-icons sprit-icons-zamok' id='menu-portfolio-size-fix'>&nbsp;&nbsp;&nbsp;</div>
+			</div>
+			<div class='menu-portfolio-crop'>
+				<label>обрезать до : </label>
+				<input type='number' value='0' name='menu-portfolio-crop-width' id='menu-portfolio-crop-width' class='menu-portfolio-crop-width'>
+				<span>x</span>
+				<input type="number" value='0' name="menu-portfolio-crop-height" id="menu-portfolio-crop-height" class="menu-portfolio-crop-height">
+				<div class='menu-portfolio-crop-fix' id='menu-portfolio-crop-fix'><span>&nbsp;&nbsp;&nbsp;</span></div>
+			</div>
+			<div class='menu-portfolio-clear'></div>
+			<input type="hidden" id="x" name="x" />
+	        <input type="hidden" id="y" name="y" />
+	        <input type="hidden" id="w" name="w" />
+	        <input type="hidden" id="h" name="h" />
+	        <input type="hidden" id='target_w' name='target_w' value = 200 />
+	        <input type="hidden" id='target_h' name='target_h' value = 200 />
+	        <input type="hidden" id='source_w' name='source_w'  />
+	        <input type="hidden" id='source_h' name='source_h'  />
+		</form>
+		<div id='menu-portfolio-preview'><div id='menu-portfolio-img'></div></div>
+		
+		<div class='menu-portfolio-clear'></div>
+		<div class='menu-portfolio-attention'>После сохранения увеличение размера невозможно.</div>
+		<iframe name="menu-protfolio-frame" style='display:none;' class="menu-protfolio-frame"></iframe>
+	</div>
+</div>
+
+</body>
+</html>

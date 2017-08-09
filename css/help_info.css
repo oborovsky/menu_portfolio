@@ -1,0 +1,90 @@
+
+.help-info-container 
+{
+	width: 1000px;
+	height: 500px;
+	background: #ffffff;
+	border: 1px solid #cccccc;
+	border-radius: 10px;
+	margin: auto;
+	margin-top:50px;
+	text-align: left;
+	vertical-align: middle;
+	/*position: relative;*/
+}
+
+.help-info-cancle_btn,
+.help-info-save_btn
+{
+	float:right;
+	margin:5px 15px 0 0;
+	border-radius: 8px;
+}
+
+.help-info-cancle_btn:hover,
+.help-info-save_btn:hover
+{
+	background: #eaeaea;
+}
+.clear
+{
+	clear:both;
+}
+
+.help-info-close_btn {
+    /*position: absolute;*/
+    float: right;
+    /*display: block;*/
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 16px;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    background: #F0F0F0;
+    text-align: center;
+    font-weight: bold;
+    margin:5px 15px 0 0;
+}
+.help-info-close_btn:hover {
+    background: #cccccc;
+}
+.help-info {
+    /*position: absolute;*/
+    float: right;
+    /*display: block;*/
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 16px;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    background: #F0F0F0;
+    text-align: center;
+    font-weight: bold;
+    margin:5px 15px 0 0;
+}
+.help-info:hover {
+    background: #cccccc;
+}
+#popup-help-info
+{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background: rgba(0, 0 ,0, 0.7);
+	z-index: 99;
+	text-align: center;
+	display: none;
+	overflow: auto;
+}
+.help-info-text
+{
+	margin:20px;
+}

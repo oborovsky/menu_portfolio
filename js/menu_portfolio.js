@@ -236,6 +236,8 @@ function MenuPortfolioForm(options)
 					$('#menu-portfolio-img > img').Jcrop({
 				      // trueSize:[source_w,source_h],
 				      // aspectRatio: aspectRatio,
+				      boxWidth:sizeImage,
+				      boxHeight:sizeImage,
 				      setSelect: [ 100, 100, TARGET_W, TARGET_H ],
 				      onSelect: updateCoords,
 				      onChange: updateCoords
@@ -264,27 +266,30 @@ function MenuPortfolioForm(options)
 	// updateCoords : updates hidden input values after every crop selection
 	function updateCoords(c)
 	{
-		elem.find('#x').val(c.x);
-		elem.find('#y').val(c.y);
-		elem.find('#w').val(c.w);
-		elem.find('#h').val(c.h);
+		var x = parseInt(c.x * source_w / sizeImage);
+		var y = parseInt(c.y * source_h / sizeImage);
+
 		var aspectRatio = source_w / source_h;
+		var width = c.w / sizeImage * source_w ;
+		var height = c.h / sizeImage * source_h ;
 
+		width = (aspectRatio > 1) ? parseInt(width) : parseInt(width / aspectRatio);
+		height = (aspectRatio < 1) ? parseInt(height) : parseInt(height * aspectRatio);
+		x = (aspectRatio > 1) ? parseInt(x) : parseInt(x / aspectRatio);
+		y = (aspectRatio < 1) ? parseInt(y) : parseInt(y * aspectRatio);
 
-		elem.find('#menu-portfolio-crop-width').val(parseInt(c.w / sizeImage * source_w ))
-		// TARGET_W = c.w;
-		// elem.find('#target_w').val(c.w);
+		elem.find('#x').val(x);
+		elem.find('#y').val(y);
+		elem.find('#w').val(width);
+		elem.find('#h').val(height);
+		elem.find('#menu-portfolio-crop-width').val(width);
 		if (cropFix )
 		{
-			elem.find('#menu-portfolio-crop-height').val(parseInt(c.w / sizeImage * source_w));
-			// TARGET_H = c.w;
-			// elem.find('#target_h').val(c.w);
+			elem.find('#menu-portfolio-crop-height').val(width);
 		}
 		else
 		{
-			elem.find('#menu-portfolio-crop-height').val(parseInt(c.h / sizeImage * source_h));
-			// TARGET_H = c.h;
-			// elem.find('#target_h').val(c.h);
+			elem.find('#menu-portfolio-crop-height').val(height);
 		}
 	}
 

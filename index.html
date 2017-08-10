@@ -3,11 +3,11 @@
 <head>
 	<title>upload file</title>
 	<meta charset='utf-8'>
+	<link rel='stylesheet' type'txt/css' href='css/Jcrop9.css'>
 	<link rel='stylesheet' type'txt/css' href='css/menu_portfolio.css'>
-	<link rel='stylesheet' type'txt/css' href='css/jquery.Jcrop.min.css'>
 	<link rel='stylesheet' type'txt/css' href='css/help_info.css'>
 	<script type="text/javascript" src='js/jquery.min.js'></script>
-	<script type="text/javascript" src='js/jquery.Jcrop.min.js'></script>
+	<script type="text/javascript" src='js/Jcrop9.js'></script>
 	<script type="text/javascript" src='js/menu_portfolio.js' defer ></script>
 	<script type="text/javascript" src='js/help_info.js' defer ></script>
 
@@ -35,11 +35,13 @@
 				<div class='menu-portfolio-size-fix sprit-icons sprit-icons-zamok' id='menu-portfolio-size-fix'>&nbsp;&nbsp;&nbsp;</div>
 			</div>
 			<div class='menu-portfolio-crop'>
-				<label>обрезать до : </label>
-				<input type='number' value='0' name='menu-portfolio-crop-width' id='menu-portfolio-crop-width' class='menu-portfolio-crop-width'>
+			<form name='crop-form' id='crop-form' onsubmit="return false;">
+				<label>обрезка : </label>
+				<input type='text' value='0' name='menu-portfolio-crop-width' id='menu-portfolio-crop-width' class='menu-portfolio-crop-width'>
 				<span>x</span>
-				<input type="number" value='0' name="menu-portfolio-crop-height" id="menu-portfolio-crop-height" class="menu-portfolio-crop-height">
+				<input type="text" value='0' name="menu-portfolio-crop-height" id="menu-portfolio-crop-height" class="menu-portfolio-crop-height">
 				<div class='menu-portfolio-crop-fix' id='menu-portfolio-crop-fix'><span>&nbsp;&nbsp;&nbsp;</span></div>
+			</form>
 			</div>
 			<div class='menu-portfolio-clear'></div>
 			<input type="hidden" id="x" name="x" />

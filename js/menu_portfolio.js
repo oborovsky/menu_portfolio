@@ -25,6 +25,12 @@ function MenuPortfolioForm(options)
 	elem.on('input','#menu-portfolio-newName-input',onChangeName);
 	elem.on('click','#menu-portfolio-size-fix',onSizeFix);
 	elem.on('click','#menu-portfolio-crop-fix',onCropFix);
+	elem.on('input','#menu-portfolio-size-width', onSizeWidth);
+	elem.on('input','#menu-portfolio-size-height', onSizeHeight);
+	// elem.find('#menu-portfolio-crop-width').on('input',onCropWidth);
+	// elem.on('click','#menu-portfolio-crop-width', onCropWidth);
+	// elem.on('input','#menu-portfolio-crop-height', onCropHeight);
+	// elem.find('#crop-form').on('blur','[type=text]', onCropChange);
 
 	open_btn.on('click', onOpen); 
 	//обработчик для таблицы уже загруженных картинок
@@ -71,7 +77,7 @@ function MenuPortfolioForm(options)
 		{
 			span = span.children[0];
 		}
-		var aspectRatio = (cropFix) ? 1 : 0;//source_w /source_h;
+		var aspectRatio = (cropFix) ? 1 : 0;
 		if(self.jcrop_api ) 
 		{
 			self.jcrop_api.setOptions({aspectRatio:aspectRatio});
@@ -79,7 +85,94 @@ function MenuPortfolioForm(options)
 		span.classList.toggle('menu-portfolio-black');
 		event.preventDefault();
 	}
+	function onSizeWidth(event)
+	{
+		var aspectRatio = source_w / source_h;
+		var value = event.target.value;
+		if (sizeFix) 
+		{
+			var sizeHight = elem.find('#menu-portfolio-size-height');
+			var valueHeight = Math.floor(value / aspectRatio);
+			sizeHight.val(valueHeight);
+			TARGET_H = valueHeight;
+		}
+		TARGET_W = value;
+	}
+	function onSizeHeight(event)
+	{
+		var aspectRatio = source_w / source_h;
+		var value = event.target.value;
+		if (sizeFix) 
+		{
+			var sizeWidth = elem.find('#menu-portfolio-size-width');
+			var valueWidth = Math.floor(value * aspectRatio);
+			sizeWidth.val(valueWidth);
+			TARGET_W = valueWidth;
+		}	
+		TARGET_H = value;
+	}
+	function onCropWidth(event)
+	{
+		var value = parseInt(event.target.value);
+		var x = parseInt(elem.find('#x').val());
+		var y = parseInt(elem.find('#y').val());
+		var h = parseInt(elem.find('#h').val());
 
+		elem.find('#w').val(value);	
+
+		if (cropFix) 
+		{
+			var cropHight = elem.find('#menu-portfolio-crop-height');
+			cropHight.val(value);
+			elem.find('#h').val(value);
+			if (self.jcrop_api)
+			{
+				self.jcrop_api.setSelect([x,y,value,value]);
+			}
+		}
+		else
+		{
+			if (self.jcrop_api)
+			{
+				self.jcrop_api.setSelect([x,y,value,h]);
+			}
+		}
+	}
+
+	function onCropHeight(event)
+	{
+		var value = parseInt(event.target.value);
+		var x = parseInt(elem.find('#x').val());
+		var y = parseInt(elem.find('#y').val());
+		var w = parseInt(elem.find('#w').val());
+
+		elem.find('#h').val(value);		
+
+		if (cropFix) 
+		{
+			var cropWidth = elem.find('#menu-portfolio-crop-width');
+			cropWidth.val(value);
+			elem.find('#w').val(value);
+			self.jcrop_api.setSelect([x,y,value,value]);
+		}
+		else
+		{
+			self.jcrop_api.setSelect([x,y,w,value]);
+		}
+	}
+	function onCropChange(event)
+	{
+		var target = $(event.target);
+		var x = parseInt(elem.find('#x').val());
+		var y = parseInt(elem.find('#y').val());
+		var h = parseInt(elem.find('#menu-portfolio-crop-height').val());
+		var w = parseInt(elem.find('#menu-portfolio-crop-width').val());
+		if ( self.jcrop_api)
+		{
+			self.jcrop_api.setSelect([x,y,w,h]);	
+		}
+
+	}
 	//==========================================
 	function loadFile(files)
 	{
@@ -139,10 +232,10 @@ function MenuPortfolioForm(options)
 					{
 							// object not defined
 					}
-					var aspectRatio = ( cropFix ) ? 1 : 0;//source_w / source_h
+					var aspectRatio = source_w / source_h;( cropFix ) ? 1 : 0;//source_w / source_h
 					$('#menu-portfolio-img > img').Jcrop({
-				      trueSize:[source_w,source_h],
-				      aspectRatio: aspectRatio,
+				      // trueSize:[source_w,source_h],
+				      // aspectRatio: aspectRatio,
 				      setSelect: [ 100, 100, TARGET_W, TARGET_H ],
 				      onSelect: updateCoords,
 				      onChange: updateCoords
@@ -175,21 +268,23 @@ function MenuPortfolioForm(options)
 		elem.find('#y').val(c.y);
 		elem.find('#w').val(c.w);
 		elem.find('#h').val(c.h);
+		var aspectRatio = source_w / source_h;
 
-		elem.find('#menu-portfolio-crop-width').val(Math.floor(c.w))
-		TARGET_W = c.w;
-		elem.find('#target_w').val(c.w);
+
+		elem.find('#menu-portfolio-crop-width').val(parseInt(c.w / sizeImage * source_w ))
+		// TARGET_W = c.w;
+		// elem.find('#target_w').val(c.w);
 		if (cropFix )
 		{
-			elem.find('#menu-portfolio-crop-height').val(Math.floor(c.w));
-			TARGET_H = c.w;
-			elem.find('#target_h').val(c.w);
+			elem.find('#menu-portfolio-crop-height').val(parseInt(c.w / sizeImage * source_w));
+			// TARGET_H = c.w;
+			// elem.find('#target_h').val(c.w);
 		}
 		else
 		{
-			elem.find('#menu-portfolio-crop-height').val(Math.floor(c.h));
-			TARGET_H = c.h;
-			elem.find('#target_h').val(c.h);
+			elem.find('#menu-portfolio-crop-height').val(parseInt(c.h / sizeImage * source_h));
+			// TARGET_H = c.h;
+			// elem.find('#target_h').val(c.h);
 		}
 	}
 
@@ -207,6 +302,15 @@ function MenuPortfolioForm(options)
 		{
 			elem.find('#menu-portfolio-crop-fix > span').removeClass('menu-portfolio-black');
 			cropFix = false;
+		}
+		try
+		{
+			self.jcrop_api.destroy();
+			self.jcrop_api = null;
+		}
+		catch(e)
+		{
+
 		}
 	}
 

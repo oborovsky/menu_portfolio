@@ -32,17 +32,23 @@
 			<hr>
 			<div class='menu-portfolio-size'>
 				<label>исходный размер: </label>
-				<input type='number' value='0' name='menu-portfolio-size-width' id='menu-portfolio-size-width' value='' placeholder="размер файла" class='menu-portfolio-size-width'>
+				<div id='menu-portfolio-size-width' class='menu-portfolio-size-width'>0</div>
 				<span>x</span>
-				<input type='number' value='0' name='menu-portfolio-size-height' id='menu-portfolio-size-height' class='menu-portfolio-size-height'>
-				<div class='menu-portfolio-size-fix sprit-icons sprit-icons-zamok' id='menu-portfolio-size-fix'>&nbsp;&nbsp;&nbsp;</div>
+				<div id='menu-portfolio-size-height' class='menu-portfolio-size-height'>0</div>
+				<div class='menu-portfolio-size-edit_btn' id='menu-portfolio-size-edit_btn'>edit</div>
 			</div>
 			<div class='menu-portfolio-crop'>
-				<label>обрезка : </label>
+				<label>crop : </label>
 				<input type='text' value='0' name='menu-portfolio-crop-width' id='menu-portfolio-crop-width' class='menu-portfolio-crop-width'>
 				<span>x</span>
 				<input type="text" value='0' name="menu-portfolio-crop-height" id="menu-portfolio-crop-height" class="menu-portfolio-crop-height">
-				<div class='menu-portfolio-crop-fix' id='menu-portfolio-crop-fix'><span>&nbsp;&nbsp;&nbsp;</span></div>
+				<!-- <div class='menu-portfolio-crop-fix' id='menu-portfolio-crop-fix'><span>&nbsp;&nbsp;&nbsp;</span></div> -->
+			</div>
+			<div class='menu-portfolio-dest-size'>
+				<label>до размера : </label>
+				<input type='text' value='200' name='menu-portfolio-dest-width' id='menu-portfolio-dest-width' class='menu-portfolio-dest-width'>
+				<span>x</span>
+				<input type="text" value='200' name="menu-portfolio-dest-height" id="menu-portfolio-dest-height" class="menu-portfolio-dest-height">
 			</div>
 			<div class='menu-portfolio-clear'></div>
 			<input type="hidden" id="x" name="x" />

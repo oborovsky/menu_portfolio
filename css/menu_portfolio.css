@@ -150,7 +150,8 @@
 	float:left;
 }
 .menu-portfolio-size,
-.menu-portfolio-crop
+.menu-portfolio-crop,
+.menu-portfolio-dest-size
 {
 	/*border:1px solid black;*/
 	padding: 5px 20px 5px 20px;
@@ -158,15 +159,18 @@
 .menu-portfolio-size-width,
 .menu-portfolio-size-height,
 .menu-portfolio-crop-width,
-.menu-portfolio-crop-height
+.menu-portfolio-crop-height,
+.menu-portfolio-dest-width,
+.menu-portfolio-dest-height
 {
 	display: inline-block;
 	width:80px;
 }
 
+.menu-portfolio-size-width,
 .menu-portfolio-size-height
 {
-	
+	border:1px solid #ccc;
 }
 .menu-portfolio-crop label
 {
@@ -198,7 +202,8 @@
     font-weight: bold;
     margin:5px 15px 0 0;
 }
-.help-info:hover {
+.help-info:hover,
+ {
     background: #cccccc;
 }
 .sprit-icons
@@ -219,7 +224,8 @@
 {
 	background-position: -19px 0;	
 }
-.menu-portfolio-crop-fix
+.menu-portfolio-crop-fix,
+.menu-portfolio-size-edit_btn
 {
 	display:inline;
 	border:1px solid #ccc;
@@ -227,6 +233,10 @@
 	margin-left: 20px;
 	cursor: pointer;
 	padding:1px 1px;
+}
+.menu-portfolio-size-edit_btn:hover
+{
+	background: #cccccc;	
 }
 .menu-portfolio-black
 {

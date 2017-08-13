@@ -293,7 +293,7 @@ function MenuPortfolioForm(options)
 			sizeImage:sizeImage
 		});
 		var aspectRatio = source_w / source_h;
-
+		// что-то не так
 		var x = resizeCoords.getSrcX();
 		var y = resizeCoords.getSrcY();
 

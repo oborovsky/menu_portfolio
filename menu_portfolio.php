@@ -46,17 +46,16 @@ function uploadFile()
 	$dst_r = imagecreatetruecolor( $targ_w, $targ_h );
 	$back_color = imagecolorallocate($dst_r, 255, 255, 255);
 	imagefill($dst_r, 0, 0, $back_color);
-	$delta_x = ($w - $source_w) / 2  * ($targ_w/$w);
-	$delta_y = ($h - $source_h) / 2  * ($targ_h/$h);
-	echo " copyresample dx: $delta_x dy: $delta_y ";
+	
 	// crop photo
-	imagecopyresampled($dst_r,$img_r,$delta_x,$delta_y,$x,$y, $targ_w,$targ_h,$w,$h);
+	imagecopyresampled($dst_r,$img_r,0,0,$x,$y, $targ_w,$targ_h,$w,$h);
 	// create the physical photo
 	$photo_dest = 'images/'.$name.'.jpg';
 	echo " tojpeg ";
 	imagejpeg($dst_r,$photo_dest,$jpeg_quality);
 	echo $photo_dest;
 	echo " Ok ";
+	return true;
 }
 
 ?>

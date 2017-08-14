@@ -125,23 +125,6 @@ function MenuPortfolioForm(options)
 		var aspectRatio = TARGET_W / TARGET_H;
 		var h = parseInt( value / aspectRatio );
 
-		// var resizeCoords = new ResizeCoords({
-		// 	x:x,
-		// 	y:y,
-		// 	w:value,
-		// 	h:h,
-		// 	source_w:source_w,
-		// 	source_h:source_w,
-		// 	sizeImage:sizeImage
-		// });
-
-		// elem.find('#w').val(value);	
-		// elem.find('#h').val(h);
-		// x = resizeCoords.getBoxX();
-		// y = resizeCoords.getBoxY();
-		// var w = resizeCoords.getBoxW();
-		// h = resizeCoords.getBoxH();
-
 		self.jcrop_api.setSelect([x,y,x+value,y+h]);
 		
 	}
@@ -167,19 +150,7 @@ function MenuPortfolioForm(options)
 			self.jcrop_api.setSelect([x,y,w,value]);
 		}
 	}
-	function onCropChange(event)
-	{
-		var target = $(event.target);
-		var x = parseInt(elem.find('#x').val());
-		var y = parseInt(elem.find('#y').val());
-		var h = parseInt(elem.find('#menu-portfolio-crop-height').val());
-		var w = parseInt(elem.find('#menu-portfolio-crop-width').val());
-		if ( self.jcrop_api)
-		{
-			self.jcrop_api.setSelect([x,y,w,h]);	
-		}
-
-	}
+	
 	//==========================================
 	function loadFile(files)
 	{
@@ -228,7 +199,7 @@ function MenuPortfolioForm(options)
 					elem.find('#source_w').val(source_w);
 					elem.find('#menu-portfolio-size-width').html(source_w);
 					elem.find('#menu-portfolio-size-height').html(source_h);
-					elem.find('#menu-portfolio-crop-width').val(TARGET_W)
+					elem.find('#menu-portfolio-crop-width').val(TARGET_W);
 					elem.find('#menu-portfolio-crop-height').val(TARGET_H);
 					createCrop();	
 					
@@ -237,7 +208,7 @@ function MenuPortfolioForm(options)
 		}
 	}
 	//end loadFile
-	function createCrop()
+	function createCrop(x,y,w,h)
 	{
 		try 
 		{
@@ -248,12 +219,7 @@ function MenuPortfolioForm(options)
 		{
 				// object not defined
 		}
-		var aspectRatio = 0;
-		
-		var x = 100;//resizeCoords.getBoxX();
-		var y = 100;//resizeCoords.getBoxY();
-		var w = 200;//resizeCoords.getBoxW();
-		var h = 200;//resizeCoords.getBoxH();
+		var aspectRatio = TARGET_W / TARGET_H;
 
 		$('#menu-portfolio-img > img').Jcrop({
 	      // trueSize:[source_w,source_h],
@@ -306,7 +272,7 @@ function MenuPortfolioForm(options)
 		elem.find('#h').val(height);
 		elem.find('#menu-portfolio-crop-width').val(width);
 		elem.find('#menu-portfolio-crop-height').val(height);
-		console.log("x:" + c.x + ",y:" + c.y + ",w:" + c.w + ",h:" + c.h);
+		// console.log("x:" + c.x + ",y:" + c.y + ",w:" + c.w + ",h:" + c.h);
 	}
 
 	function clear()
@@ -383,11 +349,16 @@ function ResizeCoords(opts)
 
 	this.getSrcX = function() 
 	{
-		return axisSrcX(x);
+		var max_side = Math.max(source_w, source_h);
+		var delta = (max_side - source_w) * sizeImage / (2 * max_side);
+
+		return axisSrcX(x - delta);
 	}
 	this.getSrcY = function()
 	{
-		return axisSrcY(y);
+		var max_side = Math.max(source_w, source_h);
+		var delta = (max_side - source_h) * sizeImage / (2 * max_side);	
+		return axisSrcY(y - delta);
 	}
 	this.getSrcW = function()
 	{
